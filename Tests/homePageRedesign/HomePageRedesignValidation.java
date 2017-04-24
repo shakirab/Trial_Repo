@@ -35,6 +35,11 @@ public class HomePageRedesignValidation extends ApplicationKeywords {
 
 		if (currentExecutionMachineName.equalsIgnoreCase("Wel_HP_Article_LvlUp")) {
 			validatePageLoadTime("https://www.forbes.com/home_usa/", 16, "Home Page");
+			validateTopAds(OR.txt_CSRPageCheck_topAd);
+			validateTopAds(OR.ads_Reg_Contributor_Page_TopxAds);
+			validateRecAds(OR.ads_HomePage_RecAd);
+			validateRecAds(OR.ads_HomePage_CSFAd);
+			validateTopAds(OR.ads_Most_Popular_HashTag_Ads);
 			validateHamburgerMenu();
 			validateCountryLabels();
 			validateHomepageHeaderTabs();
@@ -43,16 +48,13 @@ public class HomePageRedesignValidation extends ApplicationKeywords {
 			validateSearchIcon();
 			validatePromoBlock();
 			validateRelatedArticles();
+			validateForbesBVSection();
 			validateForbesListsDesktop();
 			validateRecommendedSection();
 			validateForbesVideo(-200);
 			validateVideoItems();
 			validateBottomRelatedArticles();
-			validateTopAds(OR.txt_CSRPageCheck_topAd);
-			validateTopAds(OR.ads_Reg_Contributor_Page_TopxAds);
-			validateRecAds(OR.ads_HomePage_RecAd);
-			validateRecAds(OR.ads_HomePage_CSFAd);
-			validateTopAds(OR.ads_Most_Popular_HashTag_Ads);
+			
 			
 		}
 		else if(currentExecutionMachineName.equalsIgnoreCase("AndroidMobile"))
@@ -323,7 +325,49 @@ public class HomePageRedesignValidation extends ApplicationKeywords {
 			writeToLogFile("ERROR", "Exception: " + e.toString());
 		}
 	}
-	
+	/******** this method is to validate BV section on Homepage. Added by Sindhu on 04/18/2107*/
+	public void validateForbesBVSection()
+	{
+		testStepInfo("*************Validate Forbes BV Section***********");
+		try {
+			this.scrollToElement(OR.txt_HomePage_BVSection);
+			boolean checkForbesBVHeaderlabel=elementPresent(OR.txt_HomePage_BVSection);
+			if(checkForbesBVHeaderlabel==true)
+			{
+				testStepPassed("Forbes BV Header Label is present");
+				boolean checkBVAdvertiserHeaderDetails=elementPresent(OR.txt_HomePage_BVAdvertiserHeader);
+				if(checkBVAdvertiserHeaderDetails==true){
+					int getCount=getElementCount(OR.txt_HomePage_BVAdvertiserHeader);
+					if(getCount==2){
+						testStepPassed("BV logo and tagline are displayed--"+getText("#xpath=//div[@class='advertiser-header']//div[2]"));
+						testStepPassed("BV advertiser label is --"+getText(OR.txt_HomePage_BVAdvertiserHeaderLabel));
+					}
+					else{
+						testStepWarning(" Either BV logo or tagline details are not present");
+					}
+				}
+				else{
+					testStepFailed("BV Advertiser details are not present");
+				}
+			}
+			boolean checkBVAdvertiserArticles=elementPresent(OR.txt_HomePage_BVAdvertiserArticles);
+			if(checkBVAdvertiserArticles==true){
+				int getCount=getElementCount(OR.txt_HomePage_BVAdvertiserArticles);
+				if(getCount==5){
+					testStepPassed("BV primary and secondary advertiser articles are displayed--");
+				}
+				else{
+					testStepFailed("BV primary and secondary advertiser articles are not displayed");
+				}
+			}else{
+			testStepFailed("BV advertiser articles are not displayed");
+			}
+		} catch (Exception e) {
+			writeToLogFile("ERROR", "Exception: " + e.toString());
+		}
+		
+	}
+	/******************************************************************************************/
 	public void validateForbesLists()
 	{
 		testStepInfo("*************Validate Forbes Lists***********");

@@ -1205,6 +1205,9 @@ public class OR {
 	//Sign UP
 	public static final String txt_SignUp_Page_SignUpLink="Sign Up#xpath=//a[@class='register ajaxify unireg_register ng-scope']";
 	
-	
+	public static final String txt_HomePage_BVSection="BV Header#xpath=//section//div[@class='brand-voice-header']";
+	public static final String txt_HomePage_BVAdvertiserHeader="BV Advertiser Header#xpath=//div[@class='advertiser-header']//div";
+	public static final String txt_HomePage_BVAdvertiserHeaderLabel="BV Advertiser Header Label#xpath=//div[@class='advertiser-header']//a";
+	public static final String txt_HomePage_BVAdvertiserArticles="BV Advertiser Articles#xpath=//section//div[@class='bottom']//div//a[1]";
 	
 }
