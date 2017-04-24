@@ -59,7 +59,7 @@ public class ForbesOnTrumpPageValidation extends ApplicationKeywords {
 		}
 		else
 		{
-			testStepInfo("**************** Forbes On Trump Page For Mobile *********************");
+			testStepInfo("**************** Forbes On Trump Page For iOS Mobile *********************");
 			validateForbesOnTrumpHeading(OR.txt_Forbes_On_Trump_Heading,"Forbes On Trump");
 			validateRecAds(OR.ad_EditorsPick_Mobile_RecAd); 
 			validateRecAds(OR.ad_EditorsPick_Mobile_RecxAd);
