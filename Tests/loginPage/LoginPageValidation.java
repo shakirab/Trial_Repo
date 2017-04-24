@@ -43,6 +43,7 @@ public class LoginPageValidation extends ApplicationKeywords {
 		}
 		else if(currentExecutionMachineName.equalsIgnoreCase("AndroidMobile"))
 		{
+			testStepInfo("*************Login page for mobile***********");
 			verifyLoginForm();
 			verifyLoginPage();
 			

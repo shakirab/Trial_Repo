@@ -1464,7 +1464,28 @@ public class TestCases {
 				loginHPArticle.navigateTo("http://www.forbes.com/");
 				loginHPArticle.validateHPArticle();
 			}
-		} else {
+		}
+		else if (obj.currentExecutionMachineName.equalsIgnoreCase("AndroidMobile")) {
+			TestStart("Login HP Article Page Validations", machineName,
+					method.getName());
+			loginHPArticle = new LoginHPArticle(obj);
+			for (int i = 0; i < loginHPArticle.iterationCount.size(); i++) {
+				loginHPArticle.dataRowNo = Integer
+						.parseInt(loginHPArticle.iterationCount.get(i)
+								.toString());
+				System.out
+						.println("-------------->" + loginHPArticle.dataRowNo);
+				loginHPArticle.writeHtmlTestStepReport(
+						"<font size=4 style='color:blue'>Forbes:" + (i + 1)
+								+ "</font><br/>",
+						loginHPArticle.currentExecutionMachineName,
+						loginHPArticle.currentTestCaseName);
+				loginHPArticle.navigateTo("http://www.forbes.com/");
+				loginHPArticle.validateHPArticle();
+			}
+		} 
+			
+			else {
 			throw new SkipException("");
 		}
 		obj.testCaseExecutionStatus = loginHPArticle.testCaseExecutionStatus;
